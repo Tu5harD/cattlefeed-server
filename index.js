@@ -15,9 +15,9 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "https://tushartraders.shop",
+    credentials: true, // This is important for handling cookies/authentication
   })
 );
-
 app.use(express.json({ limit: "10mb" }));
 app.get("/api/", (req, res) => {
   res.send("Hello, World!");
