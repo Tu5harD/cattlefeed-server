@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "https://tushartraders.shop",
-    credentials: true, // This is important for handling cookies/authentication
+    credentials: true,
   })
 );
 app.use(express.json({ limit: "10mb" }));
