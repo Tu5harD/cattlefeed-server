@@ -12,12 +12,24 @@ connectDB();
 
 app.use(express.json());
 app.use(cookieParser());
-// app.use(
-//   cors({
-//     origin: ["http://localhost:5173", "https://tushartraders.shop"],
-//   })
-// );
-app.use(cors({ origin: "*" }));
+const allowedOrigins = [
+  "http://localhost:5173", // Development
+  "https://tushartraders.shop", // Production
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true, // Enable cookies and other credentials
+};
+
+app.use(cors(corsOptions));
+// app.use(cors({ origin: "*" }));
 
 app.use(express.json({ limit: "10mb" }));
 app.get("/api/", (req, res) => {
