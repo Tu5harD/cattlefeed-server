@@ -14,10 +14,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://www.tushartraders.shop",
     credentials: true,
   })
 );
+
 app.use(express.json({ limit: "10mb" }));
 app.get("/api/", (req, res) => {
   res.send("Hello, World!");
