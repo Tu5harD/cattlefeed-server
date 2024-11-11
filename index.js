@@ -14,24 +14,24 @@ app.use(express.json());
 app.use(cookieParser());
 const allowedOrigins = ["https://tushartraders.shop", "http://localhost:5173"];
 
-// app.use(
-//   cors({
-//     origin: (origin, callback) => {
-//       // Check if the incoming origin is in the allowedOrigins array or if it’s undefined (for server-to-server requests)
-//       if (allowedOrigins.includes(origin) || !origin) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//   })
-// );
-
 app.use(
   cors({
-    origin: "https://tushartraders.shop",
+    origin: (origin, callback) => {
+      // Check if the incoming origin is in the allowedOrigins array or if it’s undefined (for server-to-server requests)
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   })
 );
+
+// app.use(
+//   cors({
+//     origin: "https://tushartraders.shop",
+//   })
+// );
 app.use(express.json({ limit: "10mb" }));
 app.get("/api/", (req, res) => {
   res.send("Hello, World!");
