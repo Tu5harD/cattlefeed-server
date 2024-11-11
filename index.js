@@ -24,11 +24,20 @@ app.use(express.json());
 //   })
 // );
 
+const allowedOrigins = ["https://tushartraders.shop", "http://localhost:5173"];
+
 app.use(
   cors({
-    origin: "*",
+    origin: (origin, callback) => {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   })
 );
+
 app.use(express.json({ limit: "10mb" }));
 app.get("/api/", (req, res) => {
   res.send("Hello, World!");
