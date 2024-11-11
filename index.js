@@ -7,7 +7,7 @@ const cors = require("cors");
 const app = express();
 const cookieParser = require("cookie-parser");
 
-const authRoutes = require("./src/routes/authRoutes");
+// const authRoutes = require("./src/routes/authRoutes");
 connectDB();
 
 app.use(express.json());
@@ -24,7 +24,6 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: true, // Allow cookies with requests
   })
 );
 app.use(express.json({ limit: "10mb" }));
@@ -178,7 +177,7 @@ app.patch("/api/orders/:id", async (req, res) => {
 //     .json(user);
 // });
 
-app.use("/api/auth", authRoutes);
+// app.use("/api/auth", authRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
