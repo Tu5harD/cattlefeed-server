@@ -27,7 +27,11 @@ const allowedOrigins = ["https://tushartraders.shop", "http://localhost:5173"];
 //   })
 // );
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json({ limit: "10mb" }));
 app.get("/api/", (req, res) => {
   res.send("Hello, World!");
