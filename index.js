@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://tushartraders.shop",
+    origin: "https://www.tushartraders.shop",
     credentials: true,
   })
 );
