@@ -29,7 +29,7 @@ const allowedOrigins = ["https://tushartraders.shop", "http://localhost:5173"];
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://tushartraders.shop",
   })
 );
 app.use(express.json({ limit: "10mb" }));
