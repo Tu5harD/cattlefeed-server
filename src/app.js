@@ -5,15 +5,8 @@ const orderRoutes = require("./routes/order.route");
 const userRoutes = require("./routes/user.route");
 const authRoutes = require("./routes/auth.route");
 const cookieParser = require("cookie-parser");
-const path = require("path");
 
 const app = express();
-
-app.use(express.static(path.join(__dirname, "/client/dist")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-});
 
 app.use(express.json());
 app.use(cookieParser());
