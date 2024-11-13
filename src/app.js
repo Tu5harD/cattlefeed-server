@@ -8,10 +8,11 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(cookieParser());
 const corsOptions = {
-  origin: "https://www.tushartraders.shop",
+  origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
   allowedHeaders: "Content-Type, Authorization",
   credentials: true,
@@ -19,12 +20,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// app.use(
-//   cors({
-//     origin: "https://www.tushartraders.shop",
-//     credentials: true,
-//   })
-// );
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/user", userRoutes);
