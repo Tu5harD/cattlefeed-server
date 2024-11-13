@@ -10,12 +10,21 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: "https://www.tushartraders.shop",
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: "https://www.tushartraders.shop",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+  allowedHeaders: "Content-Type, Authorization",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+// app.use(
+//   cors({
+//     origin: "https://www.tushartraders.shop",
+//     credentials: true,
+//   })
+// );
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/user", userRoutes);
