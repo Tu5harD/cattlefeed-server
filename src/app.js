@@ -14,6 +14,7 @@ const corsOptions = {
   origin: "https://www.tushartraders.shop",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
   allowedHeaders: "Content-Type, Authorization",
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
